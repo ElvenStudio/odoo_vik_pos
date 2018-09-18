@@ -6,16 +6,14 @@ function pos_descimal_md(instance, module){
     /*
      * Extend Paymentline
      */
-     module.DecimalPaymentline= module.Paymentline;
+     module.DecimalPaymentline = module.Paymentline;
      module.Paymentline = module.DecimalPaymentline.extend({
 
 
          set_amount: function(value){
-
+        	 value = parseFloat(value).toFixed(2);
              //var l_dec = value.length;
              var l_dec = value.toString();
-
-
              if(l_dec.length > 0) {
 
                 var valr = l_dec.replace(/\./g, "")
