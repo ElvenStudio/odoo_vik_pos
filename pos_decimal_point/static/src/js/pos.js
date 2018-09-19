@@ -11,7 +11,16 @@ function pos_descimal_md(instance, module){
 
 
          set_amount: function(value){
-        	 value = parseFloat(value).toFixed(2);
+        	 
+
+        	 if (value === "" || value === false) {
+        		 value = 0;
+        	 }
+        	 value = value.toString();
+        	 var word = '.';
+        	 if (value.includes(word)) {
+        		 value = parseFloat(value).toFixed(2);
+        	 }
              //var l_dec = value.length;
              var l_dec = value.toString();
              if(l_dec.length > 0) {
@@ -26,7 +35,7 @@ function pos_descimal_md(instance, module){
                 $('.paymentline.selected .paymentline-input').bind('keyup change', function(e) {
 
                     if (e.which == 8 && val_len == 1 ) {//backspace
-                        value = "";
+                        value = "0";
                     }
 
                         $('.paymentline.selected .paymentline-input').val(value);
@@ -36,7 +45,7 @@ function pos_descimal_md(instance, module){
              }
              else
              {
-                 value = "";
+                 value = "0";
              }
 
              module.DecimalPaymentline.prototype.set_amount.call(this,value);
